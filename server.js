@@ -25,9 +25,8 @@ app.listen(3030, () => console.log('Server ready at http://127.0.0.1:3030/api/bu
 app.get('/api/bug', async (req, res) => { res.send(bugs)})
 
 app.get('/api/bug/save', async (req, res) => {
-    const { _id, title, severity } = req.query
-    //const bugToSave = { _id, title: "Cannot find Car", severity: 1, createdAt: 1542107359454 }
-    const bugToSave = { _id, title, severity, createdAt: 1542107359454 }
+    const { _id, title, severity, description } = req.query
+    const bugToSave = { _id, title, severity: +severity, description, createdAt: 1542107359454 }
     const savedBug = await bugService.save(bugToSave)
 	res.send(savedBug)
 })
